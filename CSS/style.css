@@ -1,0 +1,51 @@
+body {
+    background-color: #f4f4f4f4;
+    color: #555555;
+
+    font-family: Arial, Helvetica, Sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    
+    font:normal 16px Arial,helvetica，Sans-serif；
+}
+
+.box1 {
+    background-color: antiquewhite;
+    color: royalblue;
+    border: 5px blue solid;
+    border-right: 5px red solid;
+    border-left: 8px blue solid;
+    border-top: 10px green dotted;
+    border-bottom: 1px firebrick double;
+
+    border-bottom-width: 8px;
+    border-bottom-style: dashed;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10ox;
+    padding-right: 10px;
+
+}
+
+.box1 h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-style: italic;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 1em;
+    word-spacing: 2em;
+}
+
+.box2 {
+    border: 5px dotted #cccccc;
+    border-radius: 35px;
+    padding: 20px;
+    margin: 20px 0px;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
