@@ -93,7 +93,29 @@ a:hover{
     border: 1px solid #ccc;
     box-sizing:border-box;
 }
-
+.outer {
+    display: flex;
+}
+.inner::after {
+    display: block;
+    content: '';
+    padding-bottom: 100%;
+}
+.inner {
+    flex: 1;
+}
+.inner:nth-child(1) {
+    background: red;
+    margin-right: 20px;
+}
+.inner:nth-child(2) {
+    background: rgb(0, 128, 255);
+    margin-right: 20px;
+}
+.inner:nth-child(3) {
+    background: green;
+    margin-right: 20px;
+}
 #main-black {
     float: left;
     width: 70%;
