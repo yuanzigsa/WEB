@@ -4,10 +4,9 @@
 .bg::after {
     display: block;
     content: '';
-    padding-bottom: 100%;
-    width: 50%;
-    height: 100%;
-
+    /* padding-bottom: 100%; */
+    width: 1;
+    height: 2;
 }
 .bg {
     flex: 1;
