@@ -2,18 +2,18 @@
     display: flex;
 }
 .bg::after {
-    display: block;
+    display: flex;
     content: '';
     /* padding-bottom: 100%; */
     width: 1;
     height: 2;
 }
+
 .bg {
     flex: 1;
 }
 .inner {
     flex: 1;
-    display: flexbox;
 }
 .bg:nth-child(1) {
     background-color: crimson;
