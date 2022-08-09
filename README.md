@@ -11,5 +11,5 @@ align-content 	    修改 flex-wrap 属性的行为，类似 align-items, 但不
 flex-flow       	flex-direction 和 flex-wrap 的简写
 order 	            设置弹性盒子的子元素排列顺序。
 align-self 	        在弹性子元素上使用。覆盖容器的 align-items 属性。
-flex 	            设置弹性盒子的子元素如何分配空间。
+flex 	            设置弹性盒子的子元素如何分配空间
 ```
