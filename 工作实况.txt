@@ -1,0 +1,917 @@
+【光功率oid】
+RX
+1.3.6.1.4.1.2011.5.25.31.1.1.3.1.8
+
+TX：
+1.3.6.1.4.1.2011.5.25.31.1.1.3.1.9
+
+snmpwalk -v 2c -c "whyd@6870&" 111.48.102.161:20000 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.8
+
+-1.92是dBm,642是mW（要除1000）,网上文档不靠谱，也就是10*(log10(642/1000))
+
+discovery[{#IFNAME},1.3.6.1.2.1.47.1.1.1.1.7.16915975,{#IFDESCR},1.3.6.1.4.1.2011.5.25.31.1.1.3.1.8.16915975]
+
+【触发器阈值】
+Temp     RX power(dBm)  TX power(dBm)  
+High     2.00           2.00           
+Low      -14.00         -8.00
+
+
+【LLD自动发现】
+联通 接10GE 1/0/1 10GE 1/0/2 10GE2/0/5 10GE2/0/6
+移动 接10GE1/0/3 10GE1/0/4  10GE2/0/3 10GE2/0/4
+
+业务IP
+联通 220.202.54.96/27  220.202.54.128/27
+移动 111.48.105.0/26  111.48.105.0/27
+电信直签 119.96.54.224/27   
+
+IPv6业务地址：240E:95C:300C::/56
+
+【触发器】
+
+RX.OptionalPower1.0.5
+
+{XYLT-TWOSW6870-119.36.208.6:RX.OptionalPower1.0.5.min(3m)}>-1400 and {XYLT-TWOSW6870-119.36.208.6:RX.OptionalPower1.0.5.min(3m)}<200}
+
+
+vim /usr/local/zabbix/share/zabbix/alertscripts/dingding.py
+
+#!/usr/bin/env python
+#coding:utf-8
+  
+import requests,json,sys,os,datetime
+webhook="https://oapi.dingtalk.com/robot/send?access_token=6e5bcfee12bc6fa7f3c6bd16b7d6c333d86266cecadd3fe5e77a29cedae9f9"   #说明：这里改为自己创建的机器人的webhook的值
+  
+user=sys.argv[1]
+text=sys.argv[3]
+data={
+  "msgtype": "text",
+  "text": {
+    "content": text
+  },
+  "at": {
+    "atMobiles": [
+      user
+    ],
+    "isAtAll": False
+  }
+}
+headers = {'Content-Type': 'application/json'}
+x=requests.post(url=webhook,data=json.dumps(data),headers=headers)
+if os.path.exists("/tmp/dingding.log"):
+  f=open("/tmp/dingding.log","a+")
+else:
+  f=open("/tmp/dingding.log","w+")
+f.write("\n"+"--"*30)
+if x.json()["errcode"] == 0:
+  f.write("\n"+str(datetime.datetime.now())+"  "+str(user)+"  "+"发送成功"+"\n"+str(text))
+  f.close()
+else:
+  f.write("\n"+str(datetime.datetime.now()) + "  " + str(user) + "  " + "发送失败" + "\n" + str(text))
+  f.close()
+
+
+https://oapi.dingtalk.com/robot/send?access_token=738bb5cb2170d36ebf1f4f6923da2cd2fa60e6affeeafb162001f3e01676ab02
+
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import requests
+import json
+import sys
+import os
+
+headers = {'Content-Type': 'application/json;charset=utf-8'}
+api_url = "https://oapi.dingtalk.com/robot/send?access_token=738bb5cb2170d36ebf1f4f6923da2cd2fa60e6affeeafb162001f3e01676ab02"
+
+def msg(text):
+    json_text= {
+     "msgtype": "text",
+        "text": {
+            "content": text
+        },
+        "at": {
+#            "atMobiles": [
+#                "1xxxxxxxxxx"
+#            ],
+            "isAtAll": True
+        }
+    }
+    print requests.post(api_url,json.dumps(json_text),headers=headers).content
+
+if __name__ == '__main__':
+    text = sys.argv[1]
+    msg(text)
+	
+	
+
+fping –c 100 –g 220.202.54.96/27
+
+   Default RX Power High Threshold (dBm) :4.00		3.2
+   Default RX Power Low Threshold (dBm)  :-18.01	-15.30
+   Default TX Power High Threshold (dBm) :4.00		3.2
+   Default TX Power Low Threshold (dBm)  :-10.60	-9
+
+
+
+
+
+111.48.61.96/27     移动
+220.202.54.160/27   联通
+119.96.54.192/27    电信
+
+
+
+snmpwalk -v -2c -c "xylt-two-6860" 119.36.208.2:20000 1.3.6.1.2.1.10.7.2.1.19
+
+snmpwalk -v 2c -c "whyd@6870&" 111.48.102.161:20000 1.3.6.1.4.1.2011.5.25.31.1.1.3.1.8
+
+discovery[{#SNMPVALUE},1.3.6.1.2.1.10.7.2.1.19,{#IFOPERSTATUS},1.3.6.1.2.1.2.2.1.8,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18,{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFDESCR},1.3.6.1.2.1.2.2.1.2]
+discovery[{#SNMPVALUE},1.3.6.1.2.1.10.7.2.1.19,{#IFOPERSTATUS},1.3.6.1.2.1.2.2.1.8,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18,{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFDESCR},1.3.6.1.2.1.2.2.1.2]
+
+
+
+[root@localhost ~]# fping  -g 119.36.173.128/25
+119.36.173.129 is alive
+119.36.173.160 is alive
+119.36.173.161 is alive
+119.36.173.162 is alive
+119.36.173.163 is alive
+119.36.173.164 is alive
+
+[root@localhost ~]# fping  -g 119.36.174.0/25
+119.36.174.1 is alive
+119.36.174.32 is alive
+119.36.174.33 is alive
+119.36.174.34 is alive
+119.36.174.35 is alive
+119.36.174.36 is alive
+
+【流量调度】
+[all_port]
+global_port_group=[agg1,agg2,agg3,agg5,agg8,agg10,agg12,agg14,agg16,agg17]
+[own_port]
+port_group = [agg10,agg12,agg14,agg16,agg17]
+alert_percent = 0.29
+alert_percent_low = 0.29
+
+[leased_port]
+port_group = [agg1,agg2,agg3,agg5,agg8,agg4,agg6,agg7,agg9,agg11,agg13,agg15,agg18]
+high_leased_port = [agg1,agg2,agg3,agg5,agg8]
+guaranteed_percent = 0.29
+c_group_percent = 0.92
+a_high_percent = 0.92
+b_high_percent = 0.92
+
+[global]
+dut_ip = 127.0.0.1
+dut_port = 8011
+interval_run = 5
+port_speed = 100
+port_threshold_mode = 1
+port_threshold = 0.99
+port_thr_interval = 5
+jump_protection = 3
+work_mode = 8
+low_total_threshold_bw = 6
+high_total_threshold_bw = 6.5
+logging = test.log
+ecmp_max_num = 1024
+
+111.48.61.84-86          网关：111.48.61.81 掩码：240
+220.202.54.72-73 75   网关：220.202.54.65 掩码：240
+119.96.55.52-54          网关：119.96.55.49  掩码：240
+
+interface Eth-Trunk63
+ description down-JC-61.84
+ port link-type access
+ port default vlan 11
+#
+interface Eth-Trunk64
+ description down-JC-61.85
+ port link-type access
+ port default vlan 11
+#
+interface Eth-Trunk65
+ description down-JC-61.86
+ port link-type access
+ port default vlan 11
+#
+interface GigabitEthernet0/0/9
+description down-jc
+eth-trunk 63
+#
+interface GigabitEthernet0/0/10
+description down-jc
+eth-trunk 63
+#
+interface GigabitEthernet0/0/11
+description down-jc
+eth-trunk 64
+#
+interface GigabitEthernet0/0/12
+description down-jc
+eth-trunk 64
+#
+interface GigabitEthernet0/0/13
+description down-jc
+eth-trunk 65
+#
+interface GigabitEthernet0/0/14
+description down-jc
+eth-trunk 65
+
+
+122.191.108.32/28 --云算力使用 vlan1754
+网关33 34--3f-1 35--3f-2 36--3f-3 37--3f-4 38--4f-3 39--4f-4
+
+SN：6100480300661555
+业务地址
+111.48.61.84
+220.202.54.72
+119.96.55.52
+
+SN：816439209
+业务地址
+111.48.61.85
+220.202.54.73
+119.96.55.53
+
+SN：6100480700662909
+业务地址
+111.48.61.86
+220.202.54.75
+119.96.55.54
+
+root密码WHWLC@1425AD
+
+
+5820x
+210235A0LMH144000007
+
+5810
+210235A42GH10A000013
+
+5700-3f-3
+21023523386TD9001182
+
+5700-3f-4
+21023523386TD9001134
+
+5700-4f-1
+21023523386TD9001214
+
+5700-4f-2
+2102352338DMF7001314
+
+
+interface Bridge-Aggregation13
+ description DOWN-JC
+ port access vlan 110
+#
+interface Bridge-Aggregation14
+ description DOWN-JC
+ port access vlan 110
+#
+
+interface GigabitEthernet1/0/7
+ port link-mode bridge
+ description DOWN-JC
+ port access vlan 110
+ port link-aggregation group 13
+#
+interface GigabitEthernet1/0/8
+ port link-mode bridge
+ description DOWN-JC
+ port access vlan 110
+ port link-aggregation group 13
+#
+interface GigabitEthernet1/0/9
+ port link-mode bridge
+ description DOWN-JC-BMC
+ port access vlan 110
+#
+interface GigabitEthernet1/0/10
+ port link-mode bridge
+ description DOWN-JC
+ port access vlan 110
+ port link-aggregation group 14
+#
+interface GigabitEthernet1/0/11
+ port link-mode bridge
+ description DOWN-JC
+ port access vlan 110
+ port link-aggregation group 14
+#
+interface GigabitEthernet1/0/12
+ port link-mode bridge
+ description DOWN-JC-BMC
+ port access vlan 110
+#
+
+
+
+
+
+SN：PR1710P220329SZ00018
+业务地址
+150.138.224.165
+60.217.247.93
+120.221.62.30
+管理地址
+120.221.62.18
+
+SN：PR1710P220329SZ00019
+业务地址
+150.138.224.166
+60.217.247.94
+120.221.62.31
+管理地址
+120.221.62.17
+
+root密码JNSX@2022idc
+BMC远控用户名ADMIN 密码Admin123@pl
+
+
+
+interface Eth-Trunk61
+ description down-JC-183.204.148.87
+ port default vlan 10
+#
+
+interface 10GE1/0/15
+ description down-JC
+ eth-trunk 61
+ device transceiver 1000BASE-T
+#
+interface 10GE1/0/16
+ description down-JC
+ eth-trunk 61
+ device transceiver 1000BASE-T
+#
+interface 10GE1/0/17
+ description down-JC-BMC
+ eth-trunk 61
+ device transceiver 1000BASE-T
+#
+
+
+HUAWEI 6851	
+10GE1/0/15
+10GE1/0/16
+10GE1/0/17
+业务：183.204.148.87
+BMC：183.204.148.88
+网关：183.204.148.65	
+
++++ JC-LT3
+probe=FPing11
+menu = JC-LT3
+title =JC-LT3-220.202.54.72
+alerts = someloss,rtt50
+host = 220.202.54.72
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-LT4
+probe=FPing11
+menu = JC-LT4
+title =JC-LT4-220.202.54.73
+alerts = someloss,rtt50
+host = 220.202.54.73
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-LT5
+probe=FPing11
+menu = JC-LT5
+title =JC-LT5-220.202.54.75
+alerts = someloss,rtt50
+host = 220.202.54.75
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-YD3
+probe=FPing11
+menu = JC-YD3
+title =JC-YD3-111.48.61.84
+alerts = someloss,rtt50
+host = 111.48.61.84
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC--YD4
+probe=FPing11
+menu = JC-YD4
+title =JC-YD4-111.48.61.85
+alerts = someloss,rtt50
+host = 111.48.61.85
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC--YD5
+probe=FPing11
+menu = JC-YD5
+title =JC-YD5-111.48.61.86
+alerts = someloss,rtt50
+host = 111.48.61.86
+alertee = |/opt/smokeping/bin/1.alert.sh
+
+
+
+++ JC-YD1
+probe=FPing11
+menu = JC-YD1
+title =JC-YD1-111.48.61.82
+alerts = someloss,rtt50
+host = 111.48.61.82
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC--YD2
+probe=FPing11
+menu = JC-YD2
+title =JC-YD2-111.48.61.83
+alerts = someloss,rtt50
+host = 111.48.61.83
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-YD3
+probe=FPing11
+menu = JC-YD3
+title =JC-YD3-111.48.61.84
+alerts = someloss,rtt50
+host = 111.48.61.84
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC--YD4
+probe=FPing11
+menu = JC-YD4
+title =JC-YD4-111.48.61.85
+alerts = someloss,rtt50
+host = 111.48.61.85
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC--YD5
+probe=FPing11
+menu = JC-YD5
+title =JC-YD5-111.48.61.86
+alerts = someloss,rtt50
+host = 111.48.61.86
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-DX1
+probe=FPing11
+menu = JC-DX1
+title =JC-DX1-119.96.55.50
+alerts = someloss,rtt50
+host = 119.96.55.50
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++ JC-DX3
+probe=FPing11
+menu = JC-DX3
+title =JC-DX3-119.96.55.52
+alerts = someloss,rtt50
+host = 119.96.55.52
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-DX4
+probe=FPing11
+menu = JC-DX4
+title =JC-DX4-119.96.55.53
+alerts = someloss,rtt50
+host = 119.96.55.53
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++ JC-DX5
+probe=FPing11
+menu = JC-DX5
+title =JC-DX5-119.96.55.54
+alerts = someloss,rtt50
+host = 119.96.55.54
+alertee = |/opt/smokeping/bin/1.alert.sh
+
+
++++ JC-LTGW
+probe=FPing11
+menu = JC-LTGW
+title =JC-LTGW-220.202.54.65
+alerts = someloss,rtt50
+host = 220.202.54.65
+alertee = |/opt/smokeping/bin/1.alert.sh
+
+
+【ST2-6870 6-1柜】
+#
+interface 10GE1/0/1
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.1 255.255.255.252
+ ipv6 address FEC0:1003::/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/2
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.5 255.255.255.252
+ ipv6 address FEC0:1003::2/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/3
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.9 255.255.255.252
+ ipv6 address FEC0:1003::4/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/4
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.13 255.255.255.252
+ ipv6 address FEC0:1003::6/127
+ device transceiver 10GBASE-FIBER
+#
+
+interface 10GE2/0/1
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.17 255.255.255.252
+ ipv6 address FEC0:1003::8/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE2/0/2
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.21 255.255.255.252
+ ipv6 address FEC0:1003::a/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE2/0/3
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.25 255.255.255.252
+ ipv6 address FEC0:1003::c/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE2/0/4
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.29 255.255.255.252
+ ipv6 address FEC0:1003::e/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE2/0/7
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.33 255.255.255.252
+ ipv6 address FEC0:1003::10/127
+ device transceiver 10GBASE-FIBER
+#
+
+interface 10GE3/0/1
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.37 255.255.255.252
+ ipv6 address FEC0:1003::12/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE3/0/2
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.41 255.255.255.252
+ ipv6 address FEC0:1003::14/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE3/0/5
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.70.45 255.255.255.252
+ ipv6 address FEC0:1003::16/127
+ device transceiver 10GBASE-FIBER
+#
+
+【下挂华为】
+
+interface 10GE1/0/5
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.1 255.255.255.252
+ ipv6 FEC0:1004::/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/7
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.5 255.255.255.252
+ ipv6 FEC0:1004::2/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/15
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.9 255.255.255.252
+ ipv6 FEC0:1004::4/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/23
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.13 255.255.255.252
+ ipv6 FEC0:1004::6/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/24
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.17 255.255.255.252
+ ipv6 FEC0:1004::8/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/43
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.21 255.255.255.252
+ ipv6 FEC0:1004::a/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/44
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.25 255.255.255.252
+ ipv6 FEC0:1004::c/127
+ device transceiver 10GBASE-FIBER
+#
+interface 10GE1/0/47
+ undo portswitch
+ ipv6 enable
+ ip address 192.168.80.29 255.255.255.252
+ ipv6 FEC0:1004::e/127
+ device transceiver 10GBASE-FIBER
+#
+
+#
+interface Eth-Trunk83
+ description down-jiuchi
+ port default vlan 10
+ traffic-policy route-sk-diaodu inbound
+ traffic-policy route-sk-diaodu-ipv6 inbound
+#
+interface Eth-Trunk84
+ description down-jiuchi
+ port default vlan 10
+ traffic-policy route-sk-diaodu inbound
+ traffic-policy route-sk-diaodu-ipv6 inbound
+#
+
+
+interface 25GE1/0/5
+ description down-jiuchi
+ eth-trunk 83
+ port mode 10G
+#
+interface 25GE1/0/6
+ description down-jiuchi
+ eth-trunk 83
+ port mode 10G
+#
+interface 25GE1/0/7
+ description jiuci-yk
+ port default vlan 10
+ port mode 10G
+#
+interface 25GE3/0/4
+ description down-jiuchi
+ eth-trunk 84
+ port mode 10G
+#
+interface 25GE3/0/5
+ description down-jiuchi
+ eth-trunk 84
+ port mode 10G
+#
+interface 25GE3/0/6
+ description jiuci-yk
+ port default vlan 10
+ port mode 10G
+#
+
+
+
+
+
+ undo shutdown
+ undo set flow-stat interval
+ undo ipv6 enable
+ undo ip address
+ undo ipv6 address
+ undo traffic-policy route-sk-diaodu inbound
+ undo traffic-policy route-sk-diaodu-ipv6 inbound
+ portswitch
+
+
+
+【2022年5月30日】
+横膈膜===腹式呼吸==气息总量增加
+胸腔==
+腹腔==
+
+
+歌曲的完成度
+中高音的保持
+
+未来城搬迁前3台配置
+===================
+
+【2022年5月31日】
+
+久尺宜昌联通交付
+================
+
+5月退减变更 关监控
+==================
+
+兰州电信十里店优可得
+--------------------
+#
+interface 10GE1/0/15
+  shutdown
+#
+interface 10GE1/0/16
+  shutdown
+#
+
+襄阳青岛网信
+------------
+兰州电信数投白山
+----------------
+
+【2022年6月1日】
+荆州联通斗鱼云端智度流量图的添加
+宜昌联通、未来城监控添加
+兰州电信数投 西安明赋监控
+济南三线久尺监控
+
+【2022年6月2日】
+济南三线久尺监控
+
+【2022年6月6日】
+久尺扬州三线
+
+25---128---126
+26---192---62
+27---224---30
+28---240---14
+29---248---6
+30---252
+
+【2022年6月7日】
+
+mysql -u  localhost 
+
+RSS系统搭建
+
+
+
+【2022年6月8日】
+***扬州三线记录腾讯文档
+
+
+FTP常用报错
+-----------
+
+227 登录之后输入passive关闭，在输入一次开启；windows可以打开internet选项——>高级——>取消勾选ftp被动模式
+
+
+find / -name * 
+
+
+
+
+
+
+sed -i '/^user/c user = dokuwiki ' /etc/opt/remi/php73/php-fpm.d/www.conf
+sed -i '/^group/c group = dokuwiki ' /etc/opt/remi/php73/php-fpm.d/www.conf
+
+
+
+
+【2022年6月10日】
+
+
+IP：
+58.220.49.48
+58.220.49.52
+58.220.49.53
+58.220.49.54
+58.220.49.55
+
+掩码：
+255.255.255.224
+
+网关：
+58.220.49.33
+
+
+【2022年6月22日】
+久尺扬州三台设备替换
+
+【2022年6月24日】
+襄阳三线增加波分设备的割接方案的策划
+
+
+【2022年6月29日】
+兰州飞天短信 121.63.250.133
+
+
+首页
+IDC资源
+客户资产
+运维管理
+
+
+【2022年7月5日】
+久尺扬州bmc布线
+
+
+this is my mind
+
+ipmitool lan print
+
+
+observe-port 1 interface 10GE1/0/1
+port-mirroring to observe-port 1 both
+10GE1/0/48 
+
+
+【2022年7月11日】
+
+
+
+
+【2022年7月18日】
+网络实验文档
+
+【2022年7月19日】
+adminset
+
+
+【2022年7月20日】
+------------
+	首页
+------------
+IP	机柜 服务器 交换机 告警
+
+183.204.148.33 is alive
+183.204.148.34 is alive
+183.204.148.35 is alive
+183.204.148.36 is alive
+183.204.148.37 is alive
+183.204.148.38 is alive
+183.204.148.40 is alive
+183.204.148.41 is alive
+183.204.148.42 is alive
+183.204.148.43 is alive
+183.204.148.44 is alive
+
+
+1. 开发语言一般为Python和Go
+2. 锲合度不高，需要大量修改
+3. 
+
+
+【2022年8月1日】
+
+惠州移动 犀思云 ip  120.238.118.178  255.255.255.240  120.238.118.177
+
+
+新疆电信 壹休 业务地址  网关49.119.119.161  
+49.119.119.163
+49.119.119.164
+49.119.119.165
+
+【2022年8月3日】
+流量图改名
+雅安电信4
+扬州电信10
+武汉未来城电信4
+襄阳电信8
+济南联通4
+扬州联通4
+宜昌联通8
+济南移动4
+郑州移动6
+
+【2022年8月5日10:25:11】
+PM2安装
+aira2
+git
+vim插件
+
+【2022年8月8日15:28:42】
+咸阳联通单线 113.201.106.128/25
+
+【2022年8月9日10:00:0】
+解决Zabbix poller processes more than 75% busy告警，观察到服务器物理性能过剩，所以通过更改zabbix的配置文件增大线程数以此解决问题
+
+
+【2022年8月10日09:09:22】
+壹休宜昌联通单线 IP：122.191.108.26-29
+
+【2022年8月10日14:24:05】
+zabbix空间清理完成
