@@ -918,16 +918,7 @@ zabbix空间清理
 
 
 
-[a_group]
-interface_list = [agg4,agg6,agg7,agg9,agg11,agg13,agg15,agg18]
-high_percent = 0.93
-low_percent = 0.90
 
-[b_group]
-interface_list = [agg10,agg12,agg14,agg16,agg17]
-high_percent = 0.93
-low_percent = 0.335
+【2022年8月15日09:46:43】
+兰州电信十里店犀思云
 
-[c_group]
-interface_list = [agg1,agg2,agg3,agg5,agg8]
-high_percent = 0.93
