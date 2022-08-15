@@ -366,135 +366,6 @@ BMC：183.204.148.88
 网关：183.204.148.65	
 
 +++ JC-LT3
-probe=FPing11
-menu = JC-LT3
-title =JC-LT3-220.202.54.72
-alerts = someloss,rtt50
-host = 220.202.54.72
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-LT4
-probe=FPing11
-menu = JC-LT4
-title =JC-LT4-220.202.54.73
-alerts = someloss,rtt50
-host = 220.202.54.73
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-LT5
-probe=FPing11
-menu = JC-LT5
-title =JC-LT5-220.202.54.75
-alerts = someloss,rtt50
-host = 220.202.54.75
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-YD3
-probe=FPing11
-menu = JC-YD3
-title =JC-YD3-111.48.61.84
-alerts = someloss,rtt50
-host = 111.48.61.84
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC--YD4
-probe=FPing11
-menu = JC-YD4
-title =JC-YD4-111.48.61.85
-alerts = someloss,rtt50
-host = 111.48.61.85
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC--YD5
-probe=FPing11
-menu = JC-YD5
-title =JC-YD5-111.48.61.86
-alerts = someloss,rtt50
-host = 111.48.61.86
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-
-
-++ JC-YD1
-probe=FPing11
-menu = JC-YD1
-title =JC-YD1-111.48.61.82
-alerts = someloss,rtt50
-host = 111.48.61.82
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC--YD2
-probe=FPing11
-menu = JC-YD2
-title =JC-YD2-111.48.61.83
-alerts = someloss,rtt50
-host = 111.48.61.83
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-YD3
-probe=FPing11
-menu = JC-YD3
-title =JC-YD3-111.48.61.84
-alerts = someloss,rtt50
-host = 111.48.61.84
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC--YD4
-probe=FPing11
-menu = JC-YD4
-title =JC-YD4-111.48.61.85
-alerts = someloss,rtt50
-host = 111.48.61.85
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC--YD5
-probe=FPing11
-menu = JC-YD5
-title =JC-YD5-111.48.61.86
-alerts = someloss,rtt50
-host = 111.48.61.86
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-DX1
-probe=FPing11
-menu = JC-DX1
-title =JC-DX1-119.96.55.50
-alerts = someloss,rtt50
-host = 119.96.55.50
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+ JC-DX3
-probe=FPing11
-menu = JC-DX3
-title =JC-DX3-119.96.55.52
-alerts = someloss,rtt50
-host = 119.96.55.52
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-DX4
-probe=FPing11
-menu = JC-DX4
-title =JC-DX4-119.96.55.53
-alerts = someloss,rtt50
-host = 119.96.55.53
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-+++ JC-DX5
-probe=FPing11
-menu = JC-DX5
-title =JC-DX5-119.96.55.54
-alerts = someloss,rtt50
-host = 119.96.55.54
-alertee = |/opt/smokeping/bin/1.alert.sh
-
-
-+++ JC-LTGW
-probe=FPing11
-menu = JC-LTGW
-title =JC-LTGW-220.202.54.65
-alerts = someloss,rtt50
-host = 220.202.54.65
-alertee = |/opt/smokeping/bin/1.alert.sh
 
 
 【ST2-6870 6-1柜】
@@ -728,14 +599,6 @@ interface 25GE3/0/6
 
 兰州电信十里店优可得
 --------------------
-#
-interface 10GE1/0/15
-  shutdown
-#
-interface 10GE1/0/16
-  shutdown
-#
-
 襄阳青岛网信
 ------------
 兰州电信数投白山
@@ -781,31 +644,7 @@ FTP常用报错
 find / -name * 
 
 
-
-
-
-
-sed -i '/^user/c user = dokuwiki ' /etc/opt/remi/php73/php-fpm.d/www.conf
-sed -i '/^group/c group = dokuwiki ' /etc/opt/remi/php73/php-fpm.d/www.conf
-
-
-
-
 【2022年6月10日】
-
-
-IP：
-58.220.49.48
-58.220.49.52
-58.220.49.53
-58.220.49.54
-58.220.49.55
-
-掩码：
-255.255.255.224
-
-网关：
-58.220.49.33
 
 
 【2022年6月22日】
@@ -857,18 +696,6 @@ adminset
 ------------
 IP	机柜 服务器 交换机 告警
 
-183.204.148.33 is alive
-183.204.148.34 is alive
-183.204.148.35 is alive
-183.204.148.36 is alive
-183.204.148.37 is alive
-183.204.148.38 is alive
-183.204.148.40 is alive
-183.204.148.41 is alive
-183.204.148.42 is alive
-183.204.148.43 is alive
-183.204.148.44 is alive
-
 
 1. 开发语言一般为Python和Go
 2. 锲合度不高，需要大量修改
@@ -914,20 +741,4 @@ vim插件
 壹休宜昌联通单线 IP：122.191.108.26-29
 
 【2022年8月10日14:24:05】
-zabbix空间清理
-
-
-
-[a_group]
-interface_list = [agg4,agg6,agg7,agg9,agg11,agg13,agg15,agg18]
-high_percent = 0.93
-low_percent = 0.90
-
-[b_group]
-interface_list = [agg10,agg12,agg14,agg16,agg17]
-high_percent = 0.93
-low_percent = 0.335
-
-[c_group]
-interface_list = [agg1,agg2,agg3,agg5,agg8]
-high_percent = 0.93
+zabbix空间清理完成
