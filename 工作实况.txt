@@ -957,7 +957,6 @@ localhost systemd-udevd[17746]: starting version 219
  */2 * * * * /usr/lib/mysql/mysql; no crontab for root
  
  
- 
  Unit systemd-udevd.service has begun starting up.
 localhost systemd-udevd[24314]: starting version 219
 localhost systemd[1]: Started udev Kernel Device Manager.
@@ -969,11 +968,13 @@ localhost systemd[1]: Started udev Kernel Device Manager.
 -- 
 -- The start-up result is done.
  
- 
- 
- 
- 
- 
+ 【2022年8月26日15:05:01】
+临空港zabbix主机
+
+值班
+运维
+开发 
+
  
  
  
