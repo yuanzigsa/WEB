@@ -942,8 +942,6 @@ zabbix空间清理
 
 
 
- 
- 
  【2022年8月24日14:50:22】
 Started udev Kernel Device Manager.
 getty@tty1.service has no holdoff time, scheduling restart.
@@ -959,7 +957,16 @@ localhost systemd-udevd[17746]: starting version 219
  
  
  
- 
+ Unit systemd-udevd.service has begun starting up.
+localhost systemd-udevd[24314]: starting version 219
+localhost systemd[1]: Started udev Kernel Device Manager.
+-- Subject: Unit systemd-udevd.service has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit systemd-udevd.service has finished starting up.
+-- 
+-- The start-up result is done.
  
  
  
