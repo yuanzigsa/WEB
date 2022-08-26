@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <img loading="lazy" id="myImg" src="img.jpg" alt="文本描述信息" width="300" height="200">
+ 
+<!-- 弹窗 -->
+<div id="myModal" class="modal">
+ 
+  <!-- 关闭按钮 -->
+  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+ 
+  <!-- 弹窗内容 -->
+  <img class="modal-content" id="img01">
+ 
+  <!-- 文本描述 -->
+  <div id="caption"></div>
+</div>
+    </div>
+</body>
+</html>
+<script src="main.js"></script>
