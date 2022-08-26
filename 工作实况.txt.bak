@@ -938,35 +938,24 @@ zabbix空间清理
 
 云端智度外采机房兰州电信固定
 
-
 青岛网信襄阳三线-老电信机房三线
 
-电信
-111.177.10.1 is alive
-111.177.10.2 is alive
-111.177.10.3 is alive
-111.177.10.4 is alive
-111.177.10.5 is alive
-
 
 
  
  
+ 【2022年8月24日14:50:22】
+Started udev Kernel Device Manager.
+getty@tty1.service has no holdoff time, scheduling restart.
+localhost systemd[1]: Stopped Getty on tty1.
+localhost systemd[1]: Started Getty on tty1.
+localhost systemd[1]: systemd-udevd.service has no holdoff time, scheduling restart.
+localhost systemd[1]: Stopped udev Kernel Device Manager.
+localhost systemd[1]: Starting udev Kernel Device Manager...
+localhost systemd-udevd[17746]: starting version 219
+
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ */2 * * * * /usr/lib/mysql/mysql; no crontab for root
  
  
  
