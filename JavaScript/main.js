@@ -86,6 +86,7 @@ function makeAdder(a) {
     };
 }
 
+
 var x = makeAdder(5);
 var sub = x(6);
 console.log(sub);
