@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录窗口</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>登录表单</h2>
+    <button onclick="document.getElementById('id01').style.display='block'" style="width: auto;">登录</button>
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="/action_page.php">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="https://static.runoob.com/images/mix/img_avatar.png" alt="Avatar" class="avatar">
+        </div>
+
+        <div class="container">
+            <label ><b>用户名</b></label>
+            <input type="text" placeholder="输入用户名" name="uname" required>
+
+            <label ><b>密码</b></label>
+            <input type="password" placeholder="输入密码" name="PSV" required>
+
+            <button type="submit">登录</button>
+            <input type="checkbox" checked="checed">记住我
+        </div>
+        <div class="container" style="background-color:#f1f1f1 ">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancebtn">取消</button>
+            <span class="psw">忘记 <a href="#">密码？</a></span>
+        </div>
+    </form>
+</div>
+</body>
+<script src="main.js"></script>
+</html>
