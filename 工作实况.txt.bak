@@ -976,149 +976,49 @@ localhost systemd[1]: Started udev Kernel Device Manager.
 开发 
 
  
-/* Basic Reset */
-* {
-	border: none;
-	font-family: 'Open Sans', sans-serif;
-	margin: 0;
-	padding: 0;
-}
-body {
+【2022年8月31日10:46:50】
+月底客户资源变动
+1、武汉三线悠博关停
+2、襄阳三线金山海马云各线路带宽限速 电信：11G 联通：2G  移动：10G
+3、湘潭联通节点资源全部关停
+4、郑州移动阿里200G关停
+5、兰州电信数投金山57节点100G、58节点200G 关停
 
-}
-.center {
-	background-color: #fff;
-	border-radius: 50%;
-	height: 600px;
-	margin: auto;
-	width: 600px;
-}
-h1 {
-	color: #495678;
-	font-size: 30px;	
-	margin-top: 20px;
-	padding-top: 50px;
-	display: block;
-	text-align: center;
-	text-decoration: none;
-}
-a {
-	color: #495678;
-	font-size: 30px;	
-	display: block;
-	text-align: center;
-	text-decoration: none;
-	padding-top: 20px;
-}
-form {
-	background-color: #495678;
-	box-shadow: 4px 4px #3d4a65;
-	margin: 40px auto;
-	padding: 40px 0 30px 40px;	
-	width: 280px;
-}
-.btn {
-	outline: none;
-	cursor: pointer;
-	font-size: 20px;
-	height: 45px;
-	margin: 5px 0 5px 10px;
-	width: 45px;
-}
-.btn:first-child {
-	margin: 5px 0 5px 10px;
-}
-.btn, #display, form {
-	border-radius: 25px;
-}
-#display {
-	outline: none;
-	background-color: #98d1dc;
-	box-shadow: inset 6px 6px 0px #3facc0;
-	color: #dededc;
-	font-size: 20px;
-	height: 47px;
-	text-align: right;
-	width: 165px;
-	padding-right: 10px;
-	margin-left: 10px;
-}
-.number {
-	background-color: #72778b;
-	box-shadow: 0 5px #5f6680;
-	color: #dededc;
-}
-.number:active {
-	box-shadow: 0 2px #5f6680;
-  	-webkit-transform: translateY(2px);
-  	-ms-transform: translateY(2px);
-  	-moz-tranform: translateY(2px);
-  	transform: translateY(2px);
-}
-.operator {
-	background-color: #dededc;
-	box-shadow: 0 5px #bebebe;
-	color: #72778b;
-}
-.operator:active {
-	box-shadow: 0 2px #bebebe;
-  	-webkit-transform: translateY(2px);
-  	-ms-transform: translateY(2px);
-  	-moz-tranform: translateY(2px);
-  	transform: translateY(2px);
-}
-.other {
-	background-color: #e3844c;
-	box-shadow: 0 5px #e76a3d;
-	color: #dededc;
-}
-.other:active {
-	box-shadow: 0 2px #e76a3d;
-  	-webkit-transform: translateY(2px);
-  	-ms-transform: translateY(2px);
-  	-moz-tranform: translateY(2px);
-  	transform: translateY(2px);
-}
+扩容
+1、荆州联通斗鱼扩容50G接口打开
+ 
+ 
+ 
+ 【2022年9月1日10:34:54】
+ 
+122.189.81.252 掩码248 网关249
 
+6870交换机 1/0/14远控、 1/0/15业务 
 
-/* limpa o display */ 
-document.getElementById("clear").addEventListener("click", function() {
-	document.getElementById("display").value = "";
-});
-/* recebe os valores */
-function get(value) {
-	document.getElementById("display").value += value; 
-} 
+CPU:E5-2640 0 @ 2.50GHz(24 核)、内存:64g、硬盘:1.2T、网卡:100M
 
-/* calcula */
-function calculates() {
-	var result = 0;
-	result = document.getElementById("display").value;
-	document.getElementById("display").value = "";
-	document.getElementById("display").value = eval(result);
-};
+荆州联通测试机
+业务地址
+122.189.81.252
+远控地址
+https://122.189.81.253     
+账号admin  
+密码jikyht@2020HJSADK 
  
  
+KMLT-增加策略10GE1/0/1 
+sys
+interface 10GE1/0/1
+traffic-policy route-MD40G inbound
+comm
+quit
+quit
+
  
  
+acl number 3010
+rule 5 permit ip source any
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  

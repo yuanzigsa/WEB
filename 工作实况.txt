@@ -989,19 +989,33 @@ localhost systemd[1]: Started udev Kernel Device Manager.
  
  
  
+ 【2022年9月1日10:34:54】
+ 
+122.189.81.252 掩码248 网关249
+
+6870交换机 1/0/14远控、 1/0/15业务 
+
+CPU:E5-2640 0 @ 2.50GHz(24 核)、内存:64g、硬盘:1.2T、网卡:100M
+
+荆州联通测试机
+业务地址
+122.189.81.252
+远控地址
+https://122.189.81.253     
+账号admin  
+密码jikyht@2020HJSADK 
  
  
+KMLT-增加策略10GE1/0/1 
+sys
+interface 10GE1/0/1
+traffic-policy route-MD40G inbound
+comm
+quit
+quit
+
+dis traffic-policy applied-record
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  
