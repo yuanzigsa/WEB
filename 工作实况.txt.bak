@@ -1014,11 +1014,84 @@ comm
 quit
 quit
 
+dis traffic-policy applied-record
  
  
-acl number 3010
-rule 5 permit ip source any
- 
- 
+【2022年9月6日09:54:14】
+兰州电信数投云端智度
+[root@smokeping-1 ~]# fping -g 118.182.249.0/26
+118.182.249.1 is alive
+118.182.249.2 is alive
+118.182.249.3 is alive
+118.182.249.4 is alive
+118.182.249.5 is alive
+118.182.249.6 is alive
+118.182.249.8 is alive
+118.182.249.9 is alive
+118.182.249.10 is alive
+118.182.249.34 is alive
+118.182.249.35 is alive
+118.182.249.36 is alive
+118.182.249.37 is alive
+118.182.249.38 is alive
+118.182.249.39 is alive
 
- 
++++YDZD-YWIP1
+probe=FPing2
+menu = LZDX-ST-YDZD-YWIP2
+title =LZDX-ST-YDZD-YWIP2-118.182.249.1
+alerts = loss5,rtt80
+host = 118.182.249.1
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++YDZD-YWIP2
+probe=FPing2
+menu = LZDX-ST-YDZD-YWIP3
+title =LZDX-ST-YDZD-YWIP3-118.182.249.2
+alerts = loss5,rtt80
+host = 118.182.249.2
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++YDZD-YWIP3
+probe=FPing2
+menu = LZDX-ST-YDZD-YWIP3
+title =LZDX-ST-YDZD-YWIP3-118.182.249.5
+alerts = loss5,rtt80
+host = 118.182.249.5
+alertee = |/opt/smokeping/bin/1.alert.sh
+
++++YDZD-YWIP4
+probe=FPing2
+menu = LZDX-ST-YDZD-YWIP3
+title =LZDX-ST-YDZD-YWIP3-118.182.249.8
+alerts = loss5,rtt80
+host = 118.182.249.8
+alertee = |/opt/smokeping/bin/1.alert.sh
+
+
+
+mysql -ucacti -p!Lijinyuan20 cacti < /var/www/html/cacti/cacti.sql
+雅安电信
+SN:PR1620X4210914SZ00009
+业务IP
+118.116.0.105     
+BMC 
+118.116.0.104
+掩码
+255.255.255.192
+网关
+118.116.0.97
+root密码FtrD1R@EYRt*rxHG
+
+
+
+先说一个出乎意料的真相，根据我们调查的100家B2B企业案例显示：仅有27%的B2B企业短视频账号正在被「认真对待」
+也就是说，咱们B2B的大多数企业在短视频的赛道上都处于同一起跑线上，而利用企业号做好短视频营销更是大有可为！
+
+
+【2022年9月14日14:49:25】
+首页
+资产管理
+运维工具
+用户管理
+系统管理
